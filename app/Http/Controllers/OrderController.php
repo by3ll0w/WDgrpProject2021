@@ -11,9 +11,23 @@ use App\Models\Order;
 class OrderController extends Controller
 {
     //
+public function CustomerViewOrders(){
 
+}
+
+public function CustomerViewOrderDetail(){
 
 }
 
 
+public function StaffViewOrders(){
+
 }
+public function StaffViewOrderDetail(){
+    
+}
+
+}
+
+
+

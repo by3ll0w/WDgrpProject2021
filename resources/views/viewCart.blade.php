@@ -22,27 +22,34 @@
                 <tr>
 
                     <td>{{$food->ToppingName}}</td>
-                    <td>{{$food->Noodle}}</td>  
+                    <td>{{$food->Noodle}}</td>
                     <td>{{$food->size}}</td>
                     <td>{{$food->quantity}}</td>
-                    <td>{{$food->unitPrice}}</td> 
-                    <td>{{$food->totalPrice}}</td> 
-                  
+                    <td>{{$food->unitPrice}}</td>
+                    <td>{{$food->totalPrice}}</td>
+
                     <td></td>
                 </tr>
                 @endforeach
             </tbody>
 
         </table>
+        <div>
+            <h1>Total: RM
+                @foreach($cart as $cart)
+                {{$cart->amount}}
+                @endforeach
+            </h1>
 
-<h1>Total: RM 
-        @foreach($cart as $cart)
-        {{$cart->amount}}
-        @endforeach</h1>
-
+            <a class="btn btn-danger" href='{{ route("checkout") }}'>
+        {{ __('Checkout') }}
+    </a>
+       
+       
+        </div>
     </div>
     <div class="col-sm-3">
-        
+
     </div>
 
 

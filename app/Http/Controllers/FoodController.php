@@ -9,7 +9,7 @@ use App\Models\Food;
 use App\Models\Cart;
 use App\Models\NoodleType;
 use App\Models\Topping;
-
+use App\Http\Controllers\CartController;
 
 class FoodController extends Controller
 {
@@ -27,15 +27,24 @@ class FoodController extends Controller
             'totalPrice' => $price * ($r->foodQuantity),
             'ToppingID' => $r->ToppingID,
             'NoodleTypeID' => $r->NoodleTypeID,
-            'CartID' =>$this:: obtainCartID()
+            'CartID' =>$this->obtainCart()->value('id')
 
         ]);
+
+            (new CartController)->updatePrice();
+
         Session::flash('success', "Product created successfully!");
+
         return redirect()->route('home');
     }
 
 
-    public static function obtainCartID()
+
+
+   
+
+
+    public static function obtainCart()
     {
         $key = auth()->user()->id;
         $cart = Cart::where('UserID', $key)->where('checkout', 'NO')->first();
@@ -48,7 +57,7 @@ class FoodController extends Controller
             ]);
         }
 
-        return $cart->value('id');
+        return $cart;
     }
 
     public static function getPrice($size)

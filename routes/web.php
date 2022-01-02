@@ -67,7 +67,8 @@ Route::get('/testCart',[App\Http\Controllers\CartController::class, 'getCart'])-
 Route::get('/viewCart',[App\Http\Controllers\CartController::class, 'viewCart'])->name('viewCart');
 
 
-
+//
+Route::get('/checkout',[App\Http\Controllers\CartController::class, 'checkOut'])->name('checkout');
 
 
 Auth::routes();
