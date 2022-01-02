@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\Cart;
 use App\Models\Food;
-
+use App\Models\Order;
 
 class CartController extends Controller
 {
     //
 
+//test function
     public function getCart()
     {
 
@@ -22,6 +23,7 @@ class CartController extends Controller
     }
 
 
+//function to list items in cart
     public function viewCart(){
       //  $f=Food::where('CartID',$this->obtainCart())->first();
             $cart=Cart::where('UserID', auth()->user()->id)->where('checkout', 'NO')->get();;
@@ -73,10 +75,18 @@ class CartController extends Controller
    
 //checkout
 public function checkOut(){
+    //get current user ID
+    $key = auth()->user()->id;
+
     //declare current cart
     $cart = $this->obtainCart();
+   
+    //add new order
+    $order=Order::create([
+        'UserID'=$key,
+        
 
-    //
+    ]);
 
 
     //change cart status
